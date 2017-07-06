@@ -16,10 +16,10 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    console.log({storage: storage, size});
+    // console.log({storage: storage, size});
     // debugger;
     var save = storage[count];
-    console.log({save});
+    // console.log({save});
     delete storage[count];
     // debugger;
     // if (size > 0) {
@@ -39,7 +39,7 @@ var Queue = function() {
   return someInstance;
 };
 
-// var queue = Queue();   
+// var queue = Queue();
 //
 // console.log(queue.enqueue('a'))
 // console.log(queue.dequeue())
