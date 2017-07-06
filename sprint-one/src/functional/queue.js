@@ -39,7 +39,7 @@ var Queue = function() {
   return someInstance;
 };
 
-// var queue = Queue();
+// var queue = Queue();   
 //
 // console.log(queue.enqueue('a'))
 // console.log(queue.dequeue())
