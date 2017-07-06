@@ -28,9 +28,3 @@ var Stack = function() {
 
   return someInstance;
 };
-
-var stack = Stack();
-
-stack.push('a');
-var popped = stack.pop();
-console.log(popped);
