@@ -2,30 +2,23 @@ var Stack = function() {
   var someInstance = {};
   var count = 0;
   // Use an object with numeric keys to store values
-  var mostRecent;
   // Easy mode - Object.keys().push.pop.length
     // { 1: []}
 
   var storage = {};
-  //
-
   // Implement the methods below
   someInstance.push = function(value) {
     storage[count] = value;
-    mostRecent = count;
     count++;
-
-
   };
 
   someInstance.pop = function() {
-    var save = storage[mostRecent];
-    delete storage[mostRecent];
-    // debugger;
     if (count > 0 ) {
       count--;
-      mostRecent = count;
     }
+    var save = storage[count];
+    delete storage[count];
+
     return save;
   };
 
