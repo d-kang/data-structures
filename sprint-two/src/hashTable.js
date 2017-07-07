@@ -5,14 +5,37 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
 //make array
   this.hashTable = [];
-//make bucket
+// for each _limit create a bucket
+ for (let i = 0; i < this._limit; i++) {
+  this.hashTable.push([]);
+ }
 
 };
 
-HashTable.prototype.insert = function(k, v) {
+HashTable.prototype.insert =  function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this.hashTable[index] = [];
-  this.hashTable[index].push([k, v]);
+  var holder = -1
+  this.hashTable[index].forEach( function(tuple) {
+   if (tuple[0] === k) {
+    tuple[1] = v;
+    holder = 1;
+   }
+  });
+  if (holder === -1) {
+    this.hashTable[index].push([k, v]);
+  }
+  console.log(1, this.hashTable[index], {index})
+};
+
+HashTable.prototype.retrieve = function(k) {
+  var index = getIndexBelowMaxForKey(k, this._limit);
+
+  var tupleIndex = _.filter(this.hashTable[index], function(tuple) {
+    return tuple[0] === k;
+  });
+//   console.log({tupleIndex});
+//   console.log({Hashtable: tupleIndex[0][1]})
+  return tupleIndex[0][1];
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -28,17 +51,16 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var bucket = this.hashTable[index];
-  var savedIndex;
-  debugger;
-  for( let i =0; i < bucket.length; i++) {
-    if ( bucket[i][0] === k ) {
-    	console.log('condition in loop met', i);
-      savedIndex = i;
-    }
-  }
-  console.log(bucket.splice(savedIndex, 1));
-
+  var holder = -1
+  this.hashTable[index].forEach( function (tuple, i, array) {
+   if (tuple[0] === k) {
+     console.log('found key at .remove', {tuple: JSON.stringify(tuple)})
+    // delete tuple;
+    array.splice(i, 1);
+    // delete array[i]
+    console.log('found key at .remove', {tuple: JSON.stringify(tuple)})
+   }
+});
 };
 
 
