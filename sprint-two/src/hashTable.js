@@ -46,7 +46,9 @@ HashTable.prototype.retrieve = function(k) {
   });
   // console.log({tupleIndex});
   // console.log({Hashtable: tupleIndex[0][1]})
-  return tupleIndex[0][1];
+  if (tupleIndex[0]) {
+    return tupleIndex[0][1];
+  }
 };
 
 HashTable.prototype.remove = function(k) {
