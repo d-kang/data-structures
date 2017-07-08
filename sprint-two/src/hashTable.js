@@ -44,8 +44,8 @@ HashTable.prototype.retrieve = function(k) {
   var tupleIndex = _.filter(this.hashTable[index], function(tuple) {
     return tuple[0] === k;
   });
-  console.log({tupleIndex});
-  console.log({Hashtable: tupleIndex[0][1]})
+  // console.log({tupleIndex});
+  // console.log({Hashtable: tupleIndex[0][1]})
   return tupleIndex[0][1];
 };
 
