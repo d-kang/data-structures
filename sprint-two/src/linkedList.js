@@ -22,6 +22,7 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
+
   };
 
   list.contains = function(target) {
