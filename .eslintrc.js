@@ -22,6 +22,7 @@ module.exports = {
     /* Language constructs */
     'curly': 2,
     'eqeqeq': [2, 'smart'],
+    "extends": "airbnb",
     'func-style': [2, 'expression'],
     /* Semicolons */
     'semi': 2,

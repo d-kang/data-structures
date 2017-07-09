@@ -21,5 +21,3 @@ Stack.prototype.pop = function() {
   delete this.storage[this._size];
   return tempStore;
 };
-
-// var stack = new Stack();
