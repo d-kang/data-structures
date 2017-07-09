@@ -34,50 +34,67 @@ treeMethods.insert = function (value) {
 
 };
 treeMethods.contains = function (value) {
-//search the tree for value
-    // > go right, < go left
-    // stop when you hit the null .next
-    //return a true / false if value is present
-  var found = false;
+  var wasFound = false;
   var enumerator = function(value, $node) {
-    console.log({$node});
     if (value === $node.value) {
-      found = true;
+      wasFound = true;
     } else if (value < $node.value) {
-      enumerator(value, $node.left);
-
-    } else if (value > $node.value) {
-      enumerator(value, $node.right);
+      if ($tree.left !== null) {
+        enumerator(value, $node.left);
+      }
+    } else {
+      if ($node.right !== null) {
+        enumerator(value, $node.right);
+      }
     }
   };
   enumerator(value, this);
-  return found;
+  return wasFound;
 };
 
 treeMethods.depthFirstLog = function(func) {
-  //'should execute a callback on every value
-  //in a tree using "depthFirstLog"'
-
-  //build the array to return
-
-  //iterate through the ENTIRE tree
-  //(not reallly binary search then? but does show depth)
-  //pass each value to the function
-  //recurse if .next
-  //stop when next is null
-
-  //return the values [5, 2, 3] for first test
-  //values, not the array.
-
+  var enumerate = function($tree, cb) {
+     func($tree.value);
+     if ($tree.left !== null) {
+       enumerate($tree.left, cb);
+     }
+     if ($tree.right !== null) {
+       enumerate($tree.right, cb);
+     }
+   };
+   enumerate(this, func);
 };
 
 var binarySearchTree = BinarySearchTree(5);
+console.log (binarySearchTree);
+console.log (binarySearchTree.value);
+console.log (binarySearchTree.contains(5));
+
+// binarySearchTree.insert(2)
+console.log('binarySearchTree.insert(2)', JSON.stringify(binarySearchTree.insert(2), null, 2));
+// binarySearchTree.insert(3);
+console.log('binarySearchTree.insert(3)', JSON.stringify(binarySearchTree.insert(3), null, 2));
+
+// binarySearchTree.insert(7);
+console.log('binarySearchTree.insert(7)', JSON.stringify(binarySearchTree.insert(7), null, 2));
+// binarySearchTree.insert(6);
+console.log('binarySearchTree.insert(6)', JSON.stringify(binarySearchTree.insert(6), null, 2));
+// expect(binarySearchTree.left.right.value).to.equal(3);
+// expect(binarySearchTree.right.left.value).to.equal(6);
+
+console.log('binarySearchTree.contains(5)', binarySearchTree.contains(5));
+console.log('binarySearchTree.contains(2)', binarySearchTree.contains(2));
+console.log('binarySearchTree.contains(2)', binarySearchTree.contains(3));
+console.log('binarySearchTree.contains(2)', binarySearchTree.contains(7));
+console.log('binarySearchTree.contains(2)', binarySearchTree.contains(6));
+
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-var array = [];
-var func = function(value) { array.push(value); };
-binarySearchTree.insert(2);
-binarySearchTree.insert(3);
-binarySearchTree.depthFirstLog(func);
-console.log({arrayIs: array, shouldBe: [5, 2, 3] });
+
+/*
+ * insert is logarithmic O(log(n))
+ * contains is logarithmic O(log(n))
+ * depthFirstLog logarithmic O(log(n))
+ */
