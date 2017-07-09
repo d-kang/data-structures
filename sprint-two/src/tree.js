@@ -38,11 +38,10 @@ treeMethods.contains = function(target) {
  */
 
  /*
-  * .addChild
+  * .addChild is constant in this case we are just pushing an item
+  * onto an array
   *
   * .contains is linear because worst case you must traverse
   * all the nodes
-  *
-  *
   *
   */
