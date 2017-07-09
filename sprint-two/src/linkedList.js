@@ -1,17 +1,11 @@
-var LinkedList = function() {
-  var list = {};
-  list.head = null;// begin list at start node
-  list.tail = null;// end list at end of node
+const LinkedList = function() {
+  const list = {};
+  list.head = null;
+  list.tail = null;
 
   list.addToTail = function(value) {
-  // head{ref to thing
-  //     ref to nextThing}
-  // tail{ref thing
-  //   ref to null
-  // }
-   //first time is head null? tail null?
-    //point to node and define
-    var newNode = Node(value);
+
+    const newNode = Node(value);
     if ( list.head === null ) {
       list.head = newNode;
     }
@@ -19,58 +13,45 @@ var LinkedList = function() {
       list.tail.next = newNode;
     }
     list.tail = newNode;
-
-  //second time
-    //tail now points to new node
-      //new value is now true
-
   };
 
   list.removeHead = function() {
-    var tempStore = list.head;
-    list.head = list.head.next;
-    // return former head
-    return tempStore.value;
+    const save = this.head.value;
+    this.head = this.head.next;
+    return save;
   };
 
   list.contains = function(target) {
-  //being incr
-    var doesContain = false;
-    var enumerate = function(target, node) {
-      if (node.value === target) {
+    let doesContain = false;
+    const enumerate = function(target, $node) {
+      if ($node.value === target) {
         doesContain = true;
-      } else if (node.next === null) {
+      } else if ($node.next === null) {
         return;
       } else {
-        enumerate(target, node.next);
+        enumerate(target, $node.next);
       }
     };
-    enumerate(target, list.head);
+    enumerate(target, this.head);
     return doesContain;
   };
-  // debugger;
-  //  if ( list.value === target) {
-  //
-  //   return true;
-  //  }else if (list.next === null) {
-  //   return false;
-  //  } else {
-  //   return list.contains(list.next);
-  //  }
-
 
   return list;
 };
 
-var Node = function(value) {
-  var node = {};
-
+const Node = function(value) {
+  const node = {};
   node.value = value;
   node.next = null;
-
   return node;
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ */
+
+/*
+ * .addToTail is constant because we maintain a reference to the tail
+ * .removeHead is constant because we maintain a reference to the head
+ * .contains is linear because we must travere the list
  */
