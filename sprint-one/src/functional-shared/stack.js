@@ -1,4 +1,4 @@
-var Stack = function() {
+const Stack = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   var storage = {};
@@ -7,9 +7,8 @@ var Stack = function() {
   console.log(extended);
   return extended;
 };
-//use extend and this.
 
-var stackMethods = {};
+const stackMethods = {};
 
 stackMethods.size = function() {
   return this._size;

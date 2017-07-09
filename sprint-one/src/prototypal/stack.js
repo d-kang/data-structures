@@ -1,14 +1,11 @@
-var Stack = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
-
+const Stack = function() {
   var extendedInstance = Object.create(stackMethods);
   extendedInstance.storage = {};
   extendedInstance._size = 0;
   return extendedInstance;
 };
 
-var stackMethods = {};
+const stackMethods = {};
 
 stackMethods.push = function(incoming) {
   this.storage[this._size] = incoming;
@@ -18,7 +15,7 @@ stackMethods.pop = function() {
   if (this._size > 0) {
     this._size--;
   }
-  var tempStore = this.storage[this._size];
+  const tempStore = this.storage[this._size];
   // does decrementing size automatically lose its reference to the last item?
   return tempStore;
 };

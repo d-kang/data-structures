@@ -1,12 +1,7 @@
-var Stack = function() {
-  var someInstance = {};
-  var count = 0;
-  // Use an object with numeric keys to store values
-  // Easy mode - Object.keys().push.pop.length
-    // { 1: []}
-
-  var storage = {};
-  // Implement the methods below
+const Stack = function() {
+  const someInstance = {};
+  let count = 0;
+  const storage = {};
   someInstance.push = function(value) {
     storage[count] = value;
     count++;
@@ -16,9 +11,8 @@ var Stack = function() {
     if (count > 0 ) {
       count--;
     }
-    var save = storage[count];
+    const save = storage[count];
     delete storage[count];
-
     return save;
   };
 
