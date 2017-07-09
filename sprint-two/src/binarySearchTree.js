@@ -65,6 +65,18 @@ binaryTreeMethods.depthFirstLog = function(func) {
    enumerate(this, func);
 };
 
+
+// traverses in order from left node to root node to right node
+// to perform an inOrderTraversal
+binaryTreeMethods.inOrderTraversal = function(cb) {
+  var enumerate = function($node) {
+    cb($node.left.value)
+    cb($node.value);
+    cb($node.right.value)
+  }
+  enumerate(this)
+}
+
 var binarySearchTree = BinarySearchTree(5);
 console.log (binarySearchTree);
 console.log (binarySearchTree.value);
