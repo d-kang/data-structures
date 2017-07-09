@@ -90,3 +90,12 @@ var graph = new Graph;
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+/*
+ * addNode is constant (array insertion at end of array)
+ * contains linear (array lookup)
+ * remove linear (array removal, must shift array)
+ * hasEdge linear (array lookup)
+ * removeEdge linear (array lookup)
+ * forEachNode linear (enumerate array)
+ */
