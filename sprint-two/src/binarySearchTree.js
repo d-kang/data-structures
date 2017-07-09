@@ -39,7 +39,7 @@ treeMethods.contains = function (value) {
     if (value === $node.value) {
       wasFound = true;
     } else if (value < $node.value) {
-      if ($tree.left !== null) {
+      if ($node.left !== null) {
         enumerator(value, $node.left);
       }
     } else {
