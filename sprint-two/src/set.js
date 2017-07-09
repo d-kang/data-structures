@@ -1,26 +1,33 @@
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = null; // fix me
-  //should be an object
+  set._storage = []; // fix me
   return set;
 };
 
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  // storage at key item is 1
-  // if there is one, increment value
+  this._storage.push(item);
 };
 
 setPrototype.contains = function(item) {
-  //A simple boolean
-  //Object.values(SetInstance._storage).includes(item);
+  return this._storage.some(function(elem) {
+    return elem === item;
+  });
 };
 
 setPrototype.remove = function(item) {
-  //Obj.keys().filter(item).indexOf
+  this._storage = this._storage.filter(function(elem) {
+    return elem !== item;
+  });
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ */
+
+/*
+ * add is constant
+ * contains is linear
+ * remove is linear
  */
