@@ -1,14 +1,14 @@
 var BinarySearchTree = function(value) {
 	//find the middle
-  var tempStorage = Object.create(treeMethods);
+  var tempStorage = Object.create(binaryTreeMethods);
   tempStorage.value = value;
   tempStorage.right = null;
   tempStorage.left = null;
 
   return tempStorage;
 };
-var treeMethods = {};
-treeMethods.insert = function (value) {
+var binaryTreeMethods = {};
+binaryTreeMethods.insert = function (value) {
 	//if less than insert left
   var newNode = {
     value,
@@ -33,7 +33,7 @@ treeMethods.insert = function (value) {
   enumerator(value, this);
 
 };
-treeMethods.contains = function (value) {
+binaryTreeMethods.contains = function (value) {
   var wasFound = false;
   var enumerator = function(value, $node) {
     if (value === $node.value) {
@@ -52,7 +52,7 @@ treeMethods.contains = function (value) {
   return wasFound;
 };
 
-treeMethods.depthFirstLog = function(func) {
+binaryTreeMethods.depthFirstLog = function(func) {
   var enumerate = function($tree, cb) {
      func($tree.value);
      if ($tree.left !== null) {
