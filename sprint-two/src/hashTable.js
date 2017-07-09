@@ -24,17 +24,13 @@ HashTable.prototype.insert =  function(k, v) {
   if (holder === -1) {
     this.hashTable[index].push([k, v]);
   }
-  console.log(1, this.hashTable[index], {index})
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-
   var tupleIndex = _.filter(this.hashTable[index], function(tuple) {
     return tuple[0] === k;
   });
-  // console.log({tupleIndex});
-  // console.log({Hashtable: tupleIndex[0][1]})
   if (tupleIndex[0]) {
     return tupleIndex[0][1];
   }
@@ -45,11 +41,7 @@ HashTable.prototype.remove = function(k) {
   var holder = -1
   this.hashTable[index].forEach( function (tuple, i, array) {
    if (tuple[0] === k) {
-     console.log('found key at .remove', {tuple: JSON.stringify(tuple)})
-    // delete tuple;
     array.splice(i, 1);
-    // delete array[i]
-    console.log('found key at .remove', {tuple: JSON.stringify(tuple)})
    }
 });
 };

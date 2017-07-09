@@ -70,35 +70,34 @@ binaryTreeMethods.depthFirstLog = function(func) {
 // to perform an inOrderTraversal
 binaryTreeMethods.inOrderTraversal = function(cb) {
   var enumerate = function($node) {
-    cb($node.left.value)
+    if ($node.left !== null) {
+      cb($node.left.value);
+    }
     cb($node.value);
-    cb($node.right.value)
+    if ($node.righ !== null) {
+      cb($node.right.value);
+    }
   }
   enumerate(this)
 }
 
-var binarySearchTree = BinarySearchTree(5);
-console.log (binarySearchTree);
-console.log (binarySearchTree.value);
-console.log (binarySearchTree.contains(5));
+var binarySearchTree = BinarySearchTree(15);
+binarySearchTree.insert(10)
+binarySearchTree.insert(18)
+binarySearchTree.insert(5)
+// binarySearchTree.insert(12)
+// binarySearchTree.insert(3)
+// binarySearchTree.insert(6)
+// binarySearchTree.insert(20)
 
-// binarySearchTree.insert(2)
-console.log('binarySearchTree.insert(2)', JSON.stringify(binarySearchTree.insert(2), null, 2));
-// binarySearchTree.insert(3);
-console.log('binarySearchTree.insert(3)', JSON.stringify(binarySearchTree.insert(3), null, 2));
 
-// binarySearchTree.insert(7);
-console.log('binarySearchTree.insert(7)', JSON.stringify(binarySearchTree.insert(7), null, 2));
-// binarySearchTree.insert(6);
-console.log('binarySearchTree.insert(6)', JSON.stringify(binarySearchTree.insert(6), null, 2));
-// expect(binarySearchTree.left.right.value).to.equal(3);
-// expect(binarySearchTree.right.left.value).to.equal(6);
+const array = [];
+const cb = (node) => array.push(node)
+binarySearchTree.inOrderTraversal(cb);
 
-console.log('binarySearchTree.contains(5)', binarySearchTree.contains(5));
-console.log('binarySearchTree.contains(2)', binarySearchTree.contains(2));
-console.log('binarySearchTree.contains(2)', binarySearchTree.contains(3));
-console.log('binarySearchTree.contains(2)', binarySearchTree.contains(7));
-console.log('binarySearchTree.contains(2)', binarySearchTree.contains(6));
+console.log(array)
+console.log(_.isEqual(array, [10, 15, 18]))
+
 
 
 /*
