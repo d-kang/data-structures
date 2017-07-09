@@ -33,17 +33,6 @@ HashTable.prototype.retrieve = function(k) {
   var tupleIndex = _.filter(this.hashTable[index], function(tuple) {
     return tuple[0] === k;
   });
-//   console.log({tupleIndex});
-//   console.log({Hashtable: tupleIndex[0][1]})
-  return tupleIndex[0][1];
-};
-
-HashTable.prototype.retrieve = function(k) {
-  var index = getIndexBelowMaxForKey(k, this._limit);
-
-  var tupleIndex = _.filter(this.hashTable[index], function(tuple) {
-    return tuple[0] === k;
-  });
   // console.log({tupleIndex});
   // console.log({Hashtable: tupleIndex[0][1]})
   if (tupleIndex[0]) {
@@ -69,4 +58,11 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ */
+
+
+/*
+ * insert constant
+ * retrieve constant
+ * remove constant
  */
