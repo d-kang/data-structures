@@ -75,8 +75,8 @@ binarySearchTree.insert(12)
 // console.log('binarySearchTree', binarySearchTree);
 var array = [];
 var cb = function(val) { array.push(val) };
-console.log(1, binarySearchTree.inOrderTraversal(cb))
-console.log(array)
+// console.log(1, binarySearchTree.inOrderTraversal(cb))
+// console.log(array)
 
 
 

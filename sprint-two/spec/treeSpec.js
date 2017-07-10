@@ -41,7 +41,7 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
-  it('should execute a callback on every value in a tree using "each"', function() {
+  it('should execute a cb on every value in a tree using "each"', function() {
     tree.addChild(5);
     tree.addChild(6);
     tree.children[0].addChild(7);
@@ -50,6 +50,16 @@ describe('tree', function() {
     var cb = function(val) { arr.push(val) }
     tree.each(cb);
     expect(arr).to.eql([2,5,7,6,8]);
+  });
+
+  it('should execute a cb on every value in a tree using "filter"', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    var cb = function(val) { return val % 2 === 0 }
+    var isEven = tree.filter(cb);
+    expect(isEven).to.eql([2, 6, 8]);
   });
 
 });

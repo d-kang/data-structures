@@ -32,8 +32,16 @@ nodeMethods.each = function(cb) {
   }
 };
 
-nodeMethods.filter = function() {
+nodeMethods.filter = function(cb) {
+  var data = [];
 
+  this.each(function(value) {
+    if (cb(value)) {
+      data.push(value)
+    }
+  })
+  console.log(data)
+  return data;
 };
 
 nodeMethods.map = function() {
@@ -44,7 +52,7 @@ nodeMethods.reduce = function() {
 
 };
 
-nodeMethod.every = function() {
+nodeMethods.every = function() {
 
 };
 
@@ -57,14 +65,14 @@ tree.addChild(5);
 tree.addChild(6);
 tree.children[0].addChild(7);
 tree.children[1].addChild(8);
-console.log('tree.contains(4)', tree.contains(4));  // true
-console.log('tree.contains(5)', tree.contains(5));  // true
-console.log('tree.contains(6)', tree.contains(6));  // true
-console.log('tree.contains(7)', tree.contains(7));  // true
-console.log('tree.contains(8)', tree.contains(8));  // true
-console.log('tree.contains(9)', tree.contains(9));  // false
+// console.log('tree.contains(4)', tree.contains(4));  // true
+// console.log('tree.contains(5)', tree.contains(5));  // true
+// console.log('tree.contains(6)', tree.contains(6));  // true
+// console.log('tree.contains(7)', tree.contains(7));  // true
+// console.log('tree.contains(8)', tree.contains(8));  // true
+// console.log('tree.contains(9)', tree.contains(9));  // false
 
-console.log(tree)
+// console.log(tree)
 
 /*
  * Complexity: What is the time complexity of the above functions?
@@ -77,4 +85,6 @@ console.log(tree)
   * .contains is linear because worst case you must traverse
   * all the nodes
   *
+  * .each is linear
+  * .filter is linear
   */
