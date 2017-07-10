@@ -30,23 +30,22 @@ binaryTreeMethods.insert = function (value) {
 
 };
 binaryTreeMethods.contains = function (value) {
-  var wasFound = false;
-  var enumerator = function(value, $node) {
-    if (value === $node.value) {
-      wasFound = true;
-    } else if (value < $node.value) {
-      if ($node.left !== null) {
-        enumerator(value, $node.left);
-      }
+  if (value === this.value) {
+    return true;
+  } else if (value < this.value) {
+    if (this.left === null) {
+      return false;
     } else {
-      if ($node.right !== null) {
-        enumerator(value, $node.right);
-      }
+      return this.left.contains(value);
     }
-  };
-  enumerator(value, this);
-  return wasFound;
-};
+  } else {
+    if (this.right === null) {
+      return false;
+    } else {
+      return this.right.contains(value);
+    }
+  }
+ };
 
 binaryTreeMethods.depthFirstLog = function(func) {
   func(this.value);
@@ -62,12 +61,12 @@ binaryTreeMethods.depthFirstLog = function(func) {
 // traverses in order from left node to root node to right node
 // to perform an inOrderTraversal
 binaryTreeMethods.inOrderTraversal = function(func) {
-  if (!this.left) {
-     this.left.inOrderTraversal(func);
+  if (this.left) {
+    this.left.inOrderTraversal(func);
    }
    func(this.value);
-   if (!this.right) {
-     this.right.inOrderTraversal(func);
+   if (this.right) {
+    this.right.inOrderTraversal(func);
    }
 }
 
@@ -76,13 +75,9 @@ binarySearchTree.insert(10)
 binarySearchTree.insert(18)
 binarySearchTree.insert(5)
 binarySearchTree.insert(12)
-console.log('binarySearchTree', binarySearchTree);
-// binarySearchTree.insert(3)
-// binarySearchTree.insert(6)
-// binarySearchTree.insert(20)
-
+// console.log('binarySearchTree', binarySearchTree);
 var array = [];
-var cb = val => { array.push(val) };
+var cb = function(val) { array.push(val) };
 console.log(1, binarySearchTree.inOrderTraversal(cb))
 console.log(array)
 

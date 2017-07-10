@@ -37,7 +37,7 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5, 2, 3]);
   });
 
-  it('should execute a callback on every value in the tree in numerical order using "inOrderTraversal"'), function() {
+  it('should execute a callback on every value in the tree in numerical order using "inOrderTraversal"', function() {
     binarySearchTree.insert(10)
     binarySearchTree.insert(18)
     binarySearchTree.insert(3)
@@ -50,5 +50,5 @@ describe('binarySearchTree', function() {
     var cb = val => { array.push(val) };
     binarySearchTree.inOrderTraversal(cb)
     expect(array).to.eql([3, 4, 5, 6, 10, 12, 18, 20])
-  }
+  });
 });
