@@ -49,16 +49,16 @@ binaryTreeMethods.contains = function (value) {
 };
 
 binaryTreeMethods.depthFirstLog = function(func) {
-  // var enumerate = function($tree, cb) {
-  //   func($tree.value);
-  //   if ($tree.left !== null) {
-  //     enumerate($tree.left, cb);
-  //   }
-  //   if ($tree.right !== null) {
-  //     enumerate($tree.right, cb);
-  //   }
-  // };
-  // enumerate(this, func);
+  var enumerate = function($tree, cb) {
+     func($tree.value);
+     if ($tree.left !== null) {
+       enumerate($tree.left, cb);
+     }
+     if ($tree.right !== null) {
+       enumerate($tree.right, cb);
+     }
+   };
+   enumerate(this, func);
 };
 
 
@@ -101,4 +101,6 @@ console.log(array)
  * insert is logarithmic O(log(n))
  * contains is logarithmic O(log(n))
  * depthFirstLog logarithmic O(log(n))
+ * inOrderTraversal linear O(n) because it enumerates the tree in
+ * numerical order
  */
