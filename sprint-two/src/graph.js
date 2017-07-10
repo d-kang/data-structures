@@ -34,17 +34,6 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
   return this.edges.some(function(node) {
     return _.isEqual(node, edgeRef) || _.isEqual(node, edgeRef.reverse());
   });
-
-
-  // var edgeRef = [fromNode, toNode];
-  // return this.nodes.reduce(function(memo, node) {
-  //   var isEql = _.isEqual(edgeRef, node.edge);
-  //   var isValid = node.value === fromNode && isEql;
-  //   if (isValid) {
-  //     memo = true;
-  //   }
-  //   return memo;
-  // }, false);
 };
 
 // Connects two nodes in a graph by adding an edge between them.
@@ -52,13 +41,6 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
   var edgesCopy = this.edges.slice();
   edgesCopy.push([fromNode, toNode]);
   this.edges = edgesCopy;
-  // this.nodes.reduce(function(memo, node, i, nodesList) {
-  //   if (node.value === fromNode) {
-  //     // node.edge = [fromNode, toNode];
-  //     nodesList[i].edge = [fromNode, toNode];
-  //   }
-  //   return memo;
-  // }, null);
 };
 
 // Remove an edge between any two specified (by value) nodes.
@@ -69,11 +51,6 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
     return !_.isEqual(edge, edgeRef) && !_.isEqual(edge, edgeRef.reverse());
   });
   this.edges = filteredEdges;
-  // this.node.reduce(function(memo, node, i, nodesList) {
-  //   if (node.value === fromNode) {
-  //     nodesList[i].edge = null;
-  //   }
-  // }, null);
 };
 
 // Pass in a callback which will be executed on each node of the graph.
@@ -83,9 +60,19 @@ Graph.prototype.forEachNode = function(cb) {
   }
 };
 
+Graph.prototype.mapNode = function(cb) {
+  var data = [];
+  this.forEachNode(function(node) {
+    data.push(cb(node));
+  });
+  return data;
+};
+
 var graph = new Graph;
-
-
+graph.addNode(5);
+graph.addNode(2);
+graph.addNode(1);
+console.log(graph)
 
 /*
  * Complexity: What is the time complexity of the above functions?

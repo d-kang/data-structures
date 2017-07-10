@@ -68,4 +68,15 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should execute depthFirstSearch', function() {
+    var addFive = item => item + 5;
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addNode(3);
+    var result = graph.mapNode(addFive);
+    console.log({result: result})
+    expect(result).to.eql([10, 7, 6, 8]);
+  });
 });
