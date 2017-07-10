@@ -24,6 +24,34 @@ nodeMethods.contains = function(target) {
   }
   return false;
 };
+
+nodeMethods.each = function(cb) {
+  cb(this.value)
+  for (var i = 0; i < this.children.length; i++) {
+    this.children[i].each(cb);
+  }
+};
+
+nodeMethods.filter = function() {
+
+};
+
+nodeMethods.map = function() {
+
+};
+
+nodeMethods.reduce = function() {
+
+};
+
+nodeMethod.every = function() {
+
+};
+
+nodeMethods.some = function() {
+
+};
+
 var tree = Tree(4)
 tree.addChild(5);
 tree.addChild(6);
