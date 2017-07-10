@@ -49,31 +49,26 @@ binaryTreeMethods.contains = function (value) {
 };
 
 binaryTreeMethods.depthFirstLog = function(func) {
-  var enumerate = function($tree, cb) {
-     func($tree.value);
-     if ($tree.left !== null) {
-       enumerate($tree.left, cb);
-     }
-     if ($tree.right !== null) {
-       enumerate($tree.right, cb);
-     }
-   };
-   enumerate(this, func);
+  func(this.value);
+  if (this.left) {
+    this.left.depthFirstLog(func);
+  }
+  if (this.right) {
+    this.right.depthFirstLog(func);
+  }
 };
 
 
 // traverses in order from left node to root node to right node
 // to perform an inOrderTraversal
 binaryTreeMethods.inOrderTraversal = function(func) {
-  console.log(func)
-  if (this.left !== null) {
+  if (!this.left) {
      this.left.inOrderTraversal(func);
    }
    func(this.value);
-   if (this.right !== null) {
+   if (!this.right) {
      this.right.inOrderTraversal(func);
    }
-
 }
 
 var binarySearchTree = BinarySearchTree(15);
