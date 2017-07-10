@@ -85,4 +85,5 @@ console.log(graph)
  * hasEdge linear (array lookup)
  * removeEdge linear (array lookup)
  * forEachNode linear (enumerate array)
+ * mapNode linear (enumerate array)
  */

@@ -47,6 +47,14 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should create an array of hashTable keys', function() {
+    hashTable.insert('a', 1);
+    hashTable.insert('b', 2);
+    hashTable.insert('c', 3);
+    hashTable.insert('d', 4);
+    expect(hashTable.keys()).to.eql(['a','b', 'c','d']);
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {
@@ -73,4 +81,6 @@ describe('hashTable', function() {
     hashTable.remove('Mr.');
     expect(hashTable._limit).to.equal(8);
   });
+
+
 });

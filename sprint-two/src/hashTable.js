@@ -46,6 +46,15 @@ HashTable.prototype.remove = function(k) {
 });
 };
 
+HashTable.prototype.keys = function() {
+  var data = [];
+  this.hashTable.forEach(function(bucket) {
+    bucket.forEach(function(tuple) {
+      data.push(tuple[0]);
+    })
+  })
+  return data;
+}
 
 
 /*
