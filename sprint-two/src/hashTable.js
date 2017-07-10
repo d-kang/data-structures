@@ -66,4 +66,5 @@ HashTable.prototype.keys = function() {
  * insert constant
  * retrieve constant
  * remove constant
+ * .keys is linear
  */
