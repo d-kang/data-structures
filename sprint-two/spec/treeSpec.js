@@ -41,25 +41,49 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
-  it('should execute a cb on every value in a tree using "each"', function() {
+  it('should execute a cb on every value in a tree using "eachNode"', function() {
     tree.addChild(5);
     tree.addChild(6);
     tree.children[0].addChild(7);
     tree.children[1].addChild(8);
     var arr = [];
     var cb = function(val) { arr.push(val) }
-    tree.each(cb);
+    tree.eachNode(cb);
     expect(arr).to.eql([2,5,7,6,8]);
   });
 
-  it('should execute a cb on every value in a tree using "filter"', function() {
+  it('should execute a cb on every value in a tree using "filterNode"', function() {
     tree.addChild(5);
     tree.addChild(6);
     tree.children[0].addChild(7);
     tree.children[1].addChild(8);
     var cb = function(val) { return val % 2 === 0 }
-    var isEven = tree.filter(cb);
+    var isEven = tree.filterNode(cb);
     expect(isEven).to.eql([2, 6, 8]);
+  });
+
+  it('should execute a cb on every value in a tree using "mapNode"', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    var cb = function(val) { return val + 1 }
+    expect(tree.mapNode(cb)).to.eql([3,6,8,7,9]);
+  });
+
+  it('should execute a cb on every value in a tree using "reduceNode"', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    var cb = function(memo, val) {
+      if (memo) {
+        return memo;
+      }
+      return val === 8;
+    }
+    var output = tree.reduceNode(cb, false);
+    expect(output).to.eql(true);
   });
 
 });

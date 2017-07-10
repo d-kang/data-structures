@@ -25,17 +25,16 @@ nodeMethods.contains = function(target) {
   return false;
 };
 
-nodeMethods.each = function(cb) {
+nodeMethods.eachNode = function(cb) {
   cb(this.value)
   for (var i = 0; i < this.children.length; i++) {
-    this.children[i].each(cb);
+    this.children[i].eachNode(cb);
   }
 };
 
-nodeMethods.filter = function(cb) {
+nodeMethods.filterNode = function(cb) {
   var data = [];
-
-  this.each(function(value) {
+  this.eachNode(function(value) {
     if (cb(value)) {
       data.push(value)
     }
@@ -44,21 +43,27 @@ nodeMethods.filter = function(cb) {
   return data;
 };
 
-nodeMethods.map = function() {
-
+nodeMethods.mapNode = function(cb) {
+  var data = [];
+  this.eachNode(function(node) {
+    data.push(cb(node));
+  })
+  return data;
 };
 
-nodeMethods.reduce = function() {
-
+nodeMethods.reduceNode = function(cb, memo) {
+  var tally = false;
+  this.eachNode(function(val) {
+    if (memo === undefined && !tally) {
+      memo = val;
+      tally = true;
+    } else {
+      memo = cb(memo, val);
+    }
+  });
+  return memo
 };
 
-nodeMethods.every = function() {
-
-};
-
-nodeMethods.some = function() {
-
-};
 
 var tree = Tree(4)
 tree.addChild(5);
@@ -85,6 +90,8 @@ tree.children[1].addChild(8);
   * .contains is linear because worst case you must traverse
   * all the nodes
   *
-  * .each is linear
-  * .filter is linear
+  * .eachNode is linear
+  * .filterNode is linear
+  * .mapNode is linear
+  * .reduceNode is linear
   */
