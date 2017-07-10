@@ -1,32 +1,29 @@
 var BinarySearchTree = function(value) {
 	//find the middle
-  var tempStorage = Object.create(binaryTreeMethods);
-  tempStorage.value = value;
-  tempStorage.right = null;
-  tempStorage.left = null;
+  var node = Object.create(binaryTreeMethods);
+  node.value = value;
+  node.right = null;
+  node.left = null;
 
-  return tempStorage;
+  return node;
 };
 var binaryTreeMethods = {};
+
 binaryTreeMethods.insert = function (value) {
-	//if less than insert left
   var newNode = BinarySearchTree(value);
-  var enumerator = function ( value, $node) {
-    if ( value < $node.value ) {
-      if ( $node.left === null ) {
-        $node.left = newNode;
-      } else {
-        enumerator(value, $node.left);
-      }
+  if (value < this.value) {
+    if (this.left === null) {
+      this.left = newNode;
     } else {
-      if ( $node.right === null ) {
-        $node.right = newNode;
-      } else {
-        enumerator(value, $node.right);
-      }
+      this.left.insert(value);
     }
-  };
-  enumerator(value, this);
+  } else {
+    if (this.right === null) {
+      this.right = newNode;
+    } else {
+      this.right.insert(value);
+    }
+  }
 
 };
 binaryTreeMethods.contains = function (value) {
