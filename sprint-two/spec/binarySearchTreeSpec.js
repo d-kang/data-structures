@@ -4,7 +4,7 @@
 //   beforeEach(function() {
 //     binarySearchTree = BinarySearchTree(5);
 //   });
-// 
+//
 //   it('should have methods named "insert", "contains", and "depthFirstLog', function() {
 //     expect(binarySearchTree.insert).to.be.a('function');
 //     expect(binarySearchTree.contains).to.be.a('function');

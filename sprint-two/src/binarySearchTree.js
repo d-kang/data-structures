@@ -10,11 +10,7 @@ var BinarySearchTree = function(value) {
 var binaryTreeMethods = {};
 binaryTreeMethods.insert = function (value) {
 	//if less than insert left
-  var newNode = {
-    value,
-    left: null,
-    right: null
-  };
+  var newNode = BinarySearchTree(value);
   var enumerator = function ( value, $node) {
     if ( value < $node.value ) {
       if ( $node.left === null ) {
@@ -53,50 +49,47 @@ binaryTreeMethods.contains = function (value) {
 };
 
 binaryTreeMethods.depthFirstLog = function(func) {
-  var enumerate = function($tree, cb) {
-     func($tree.value);
-     if ($tree.left !== null) {
-       enumerate($tree.left, cb);
-     }
-     if ($tree.right !== null) {
-       enumerate($tree.right, cb);
-     }
-   };
-   enumerate(this, func);
+  // var enumerate = function($tree, cb) {
+  //   func($tree.value);
+  //   if ($tree.left !== null) {
+  //     enumerate($tree.left, cb);
+  //   }
+  //   if ($tree.right !== null) {
+  //     enumerate($tree.right, cb);
+  //   }
+  // };
+  // enumerate(this, func);
 };
 
 
 // traverses in order from left node to root node to right node
 // to perform an inOrderTraversal
-binaryTreeMethods.inOrderTraversal = function(cb) {
-  var enumerate = function($node) {
-    if ($node.left !== null) {
-      cb($node.left.value);
-    }
-    cb($node.value);
-    if ($node.righ !== null) {
-      cb($node.right.value);
-    }
-  }
-  enumerate(this)
+binaryTreeMethods.inOrderTraversal = function(func) {
+  console.log(func)
+  if (this.left !== null) {
+     this.left.inOrderTraversal(func);
+   }
+   func(this.value);
+   if (this.right !== null) {
+     this.right.inOrderTraversal(func);
+   }
+
 }
 
 var binarySearchTree = BinarySearchTree(15);
 binarySearchTree.insert(10)
 binarySearchTree.insert(18)
 binarySearchTree.insert(5)
-// binarySearchTree.insert(12)
+binarySearchTree.insert(12)
+console.log('binarySearchTree', binarySearchTree);
 // binarySearchTree.insert(3)
 // binarySearchTree.insert(6)
 // binarySearchTree.insert(20)
 
-
-const array = [];
-const cb = (node) => array.push(node)
-binarySearchTree.inOrderTraversal(cb);
-
+var array = [];
+var cb = val => { array.push(val) };
+console.log(1, binarySearchTree.inOrderTraversal(cb))
 console.log(array)
-console.log(_.isEqual(array, [10, 15, 18]))
 
 
 
