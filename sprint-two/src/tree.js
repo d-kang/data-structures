@@ -39,7 +39,6 @@ nodeMethods.filterNode = function(cb) {
       data.push(value)
     }
   })
-  console.log(data)
   return data;
 };
 

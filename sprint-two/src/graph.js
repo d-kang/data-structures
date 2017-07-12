@@ -72,7 +72,6 @@ var graph = new Graph;
 graph.addNode(5);
 graph.addNode(2);
 graph.addNode(1);
-console.log(graph)
 
 /*
  * Complexity: What is the time complexity of the above functions?

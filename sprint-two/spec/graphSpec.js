@@ -76,7 +76,6 @@ describe('graph', function() {
     graph.addNode(1);
     graph.addNode(3);
     var result = graph.mapNode(addFive);
-    console.log({result: result})
     expect(result).to.eql([10, 7, 6, 8]);
   });
 });
